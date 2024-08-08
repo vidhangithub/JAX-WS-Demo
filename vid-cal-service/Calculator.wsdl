@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/"
+             xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+             xmlns:vidCal="http://vidhan.com/Calculator"
+             xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+             name="CalculatorService"
+             targetNamespace="http://vidhan.com/Calculator">
+
+  <!-- Types definition -->
+  <types>
+    <xsd:schema targetNamespace="http://vidhan.com/Calculator">
+      <xsd:element name="AddRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="a" type="xsd:double"/>
+            <xsd:element name="b" type="xsd:double"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="AddResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:double"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="SubtractRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="a" type="xsd:double"/>
+            <xsd:element name="b" type="xsd:double"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="SubtractResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:double"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="MultiplyRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="a" type="xsd:double"/>
+            <xsd:element name="b" type="xsd:double"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="MultiplyResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:double"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+
+      <xsd:element name="DivideRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="a" type="xsd:double"/>
+            <xsd:element name="b" type="xsd:double"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="DivideResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="result" type="xsd:double"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </types>
+
+  <!-- Messages definition -->
+  <message name="AddRequest">
+    <part name="parameters" element="vidCal:AddRequest"/>
+  </message>
+  <message name="AddResponse">
+    <part name="parameters" element="vidCal:AddResponse"/>
+  </message>
+  <message name="SubtractRequest">
+    <part name="parameters" element="vidCal:SubtractRequest"/>
+  </message>
+  <message name="SubtractResponse">
+    <part name="parameters" element="vidCal:SubtractResponse"/>
+  </message>
+  <message name="MultiplyRequest">
+    <part name="parameters" element="vidCal:MultiplyRequest"/>
+  </message>
+  <message name="MultiplyResponse">
+    <part name="parameters" element="vidCal:MultiplyResponse"/>
+  </message>
+  <message name="DivideRequest">
+    <part name="parameters" element="vidCal:DivideRequest"/>
+  </message>
+  <message name="DivideResponse">
+    <part name="parameters" element="vidCal:DivideResponse"/>
+  </message>
+
+  <!-- Port Type definition -->
+  <portType name="CalculatorPortType">
+    <operation name="Add">
+      <input message="vidCal:AddRequest"/>
+      <output message="vidCal:AddResponse"/>
+    </operation>
+    <operation name="Subtract">
+      <input message="vidCal:SubtractRequest"/>
+      <output message="vidCal:SubtractResponse"/>
+    </operation>
+    <operation name="Multiply">
+      <input message="vidCal:MultiplyRequest"/>
+      <output message="vidCal:MultiplyResponse"/>
+    </operation>
+    <operation name="Divide">
+      <input message="vidCal:DivideRequest"/>
+      <output message="vidCal:DivideResponse"/>
+    </operation>
+  </portType>
+
+  <!-- Binding definition -->
+  <binding name="CalculatorBinding" type="vidCal:CalculatorPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
+    <operation name="Add">
+      <soap:operation soapAction="http://vidhan.com/Calculator/Add"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="Subtract">
+      <soap:operation soapAction="http://vidhan.com/Calculator/Subtract"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="Multiply">
+      <soap:operation soapAction="http://vidhan.com/Calculator/Multiply"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="Divide">
+      <soap:operation soapAction="http://vidhan.com/Calculator/Divide"/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+
+  <!-- Service definition -->
+  <service name="CalculatorService">
+    <port name="CalculatorPort" binding="vidCal:CalculatorBinding">
+      <soap:address location="http://localhost:8080/calculator"/>
+    </port>
+  </service>
+</definitions>
