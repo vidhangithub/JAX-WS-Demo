@@ -7,10 +7,8 @@ public class CalculatorSOAPImpl implements CalculatorPortType{
 
 	@Override
 	public AddResponse add(AddRequest parameters) {
-		double a = parameters.getA();
-		double b = parameters.getB();
 		AddResponse addResponse = new AddResponse();
-		addResponse.setResult(a+b);
+		addResponse.setResult(parameters.a + parameters.b);
 		return addResponse;
 	}
 
